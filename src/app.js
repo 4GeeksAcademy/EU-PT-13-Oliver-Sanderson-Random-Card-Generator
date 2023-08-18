@@ -5,9 +5,10 @@ import "./style.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
-window.onload = function() {
-  //write your code here
+window.onload = loadCard();
+//write your code here
 
+function loadCard() {
   let cardNumberElement = document.getElementById("cardNumber");
   let cardSuitTElement = document.getElementById("cardSuitT");
   let cardSuitBElement = document.getElementById("cardSuitB");
@@ -62,4 +63,33 @@ window.onload = function() {
   cardSuitBElement.innerHTML = randomSuitString;
   cardSuitTElement.style.color = randomSuitColor;
   cardSuitBElement.style.color = randomSuitColor;
-};
+}
+
+let newCardBtn = document.getElementById("newCardBtn");
+newCardBtn.addEventListener("click", loadCard);
+
+// This is the 10 second timer to generate a new card
+function timer() {
+  loadCard();
+  setTimeout(timer, 10000);
+}
+
+timer();
+
+//change sizes
+let sizeBtn = document.getElementById("sizeBtn");
+function setSizes() {
+  let width = parseInt(document.getElementById("widthInput").value);
+  let height = parseInt(document.getElementById("heightInput").value);
+  let cardMain = document.getElementById("cardMain");
+  console.log(width);
+  console.log(height);
+  if (height != "NaN") {
+    cardMain.style.height = height + "px";
+  }
+  if (width != "NaN") {
+    cardMain.style.width = width + "px";
+  }
+}
+
+sizeBtn.addEventListener("click", setSizes);
